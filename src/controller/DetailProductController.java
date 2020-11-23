@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Products;
+import model.Product;
 import service.ProductsService;
 import service.impl.ProductsServiceImpl;
 
@@ -20,7 +20,7 @@ public class DetailProductController extends HttpServlet{
 		String id = req.getParameter("id");
 		System.out.println("query id : " + id);
 		ProductsService ProductService = new ProductsServiceImpl();
-		Products Product = ProductService.getByID(Integer.valueOf(id));
+		Product Product = ProductService.getByID(Integer.valueOf(id));
 //		Products Product = ProductService.getByID(Integer.valueOf(id));
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/product/detail.jsp");
 		req.setAttribute("product", Product);

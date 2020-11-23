@@ -11,16 +11,16 @@ import java.util.List;
 import javax.servlet.http.Part;
 
 import dao.RootDao;
-import dao.ProductsDao;
-import model.Categories;
-import model.Products;
+import dao.ProductDao;
+import model.Category;
+import model.Product;
 import service.CategoriesService;
 import service.impl.CategoriesServiceImpl;
 
-public class ProductsDaoImpl extends RootDao implements ProductsDao {
+public class ProductDaoImpl extends RootDao implements ProductDao {
 
 	@Override
-	public void addSP(Products Products){
+	public void addProduct(Product Products){
 		String sql = "INSERT INTO products (name,code,brief,price,category_id,description,photo) VALUES (?,?,?,?,?,?,?) ";
 		
 //		CategoriesService categoriesService =  new CategoriesServiceImpl();
@@ -54,7 +54,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public void editSP(Products Products) {
+	public void editProduct(Product Products) {
 		String sql = "UPDATE products SET name = ?,maSP = ?,brief = ?,price = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
@@ -72,7 +72,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public void deleteSP(int id) {
+	public void deleteProduct(int id) {
 		String sql = "DELETE FROM products WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
@@ -86,15 +86,15 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public List<Products> getAll() {
-		List<Products> Productss = new ArrayList<Products>();
+	public List<Product> getAll() {
+		List<Product> Productss = new ArrayList<Product>();
 		String sql = "SELECT * FROM products";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Products Products = new Products();
+				Product Products = new Product();
 				Products.setId(rs.getInt("id"));
 				Products.setName(rs.getString("name"));
 				Products.setCode(rs.getString("code"));
@@ -115,7 +115,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public Products getByID(int id) {
+	public Product getByID(int id) {
 		String sql = "SELECT * FROM products WHERE id = ?";
 
 		try {
@@ -123,7 +123,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Products Products = new Products();
+				Product Products = new Product();
 				Products.setId(rs.getInt("id"));
 				Products.setName(rs.getString("name"));
 				Products.setCode(rs.getString("code"));
@@ -140,8 +140,8 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public List<Products> getByName(String name) {
-		List<Products> Productss = new ArrayList<Products>();
+	public List<Product> getByName(String name) {
+		List<Product> Productss = new ArrayList<Product>();
 		String sql = "SELECT * FROM products WHERE name LIKE '%" + name + "%'";
 
 		try {
@@ -149,7 +149,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 			// preparedStatement.setString(1, '');
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Products Products = new Products();
+				Product Products = new Product();
 				Products.setId(rs.getInt("id"));
 				Products.setName(rs.getString("name"));
 				Products.setCode(rs.getString("code"));
@@ -166,7 +166,7 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public void updateImageSP(Products Products) {
+	public void updateImage(Product Products) {
 		String sql = "UPDATE products SET image = ? WHERE id = ?";
 
 		try {
@@ -181,16 +181,16 @@ public class ProductsDaoImpl extends RootDao implements ProductsDao {
 	}
 
 	@Override
-	public List<Products> getProductByIDCategori(int id) {
+	public List<Product> getProductByCategory(int id) {
 		String sql = "SELECT * FROM products WHERE category_id = ?";
-		List<Products> Productss = new ArrayList<Products>();
+		List<Product> Productss = new ArrayList<Product>();
 		
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()){
-				Products Products = new Products();
+				Product Products = new Product();
 				Products.setId(rs.getInt("id"));
 				Products.setName(rs.getString("name"));
 				Products.setCode(rs.getString("code"));

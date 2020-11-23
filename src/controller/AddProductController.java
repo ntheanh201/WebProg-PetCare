@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import dao.ProductsDao;
-import dao.impl.ProductsDaoImpl;
-import model.Categories;
-import model.Products;
+import dao.ProductDao;
+import dao.impl.ProductDaoImpl;
+import model.Category;
+import model.Product;
 import service.CategoriesService;
 import service.ProductsService;
 import service.impl.CategoriesServiceImpl;
@@ -32,7 +32,7 @@ public class AddProductController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private static final int BUFFER_SIZE = 4096;
 		
-	ProductsDao ProductsDao = new ProductsDaoImpl();
+	ProductDao ProductsDao = new ProductDaoImpl();
 	
 	ProductsService ProductsService = new ProductsServiceImpl();
 	
@@ -40,7 +40,7 @@ public class AddProductController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		CategoriesService categoriesService = new CategoriesServiceImpl();
-		List<Categories> categories = categoriesService.getAllCategories();
+		List<Category> categories = categoriesService.getAllCategories();
 //		for (Categories categories2 : categories) {
 //			System.out.println("type : "+ categories2);
 //		}
@@ -63,7 +63,7 @@ public class AddProductController extends HttpServlet{
 		
 		Part filePart = req.getPart("photo");
 //		System.out.println("cate id:  " + category_Id);
-		Products Products = new Products();
+		Product Products = new Product();
 		Products.setName(name);
 		Products.setCode(code);
 		Products.setCategory_id(Integer.parseInt(category_Id));

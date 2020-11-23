@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.User;
+import model.Customer;
 
 @WebFilter(urlPatterns={"/admin/*"})
-//@WebSerlet(urlPatterns={"/admin/*"})
 public class LoginFilter implements Filter{
 
 	@Override
@@ -32,12 +31,12 @@ public class LoginFilter implements Filter{
 		HttpSession httpSession = req.getSession();
 		Object object = httpSession.getAttribute("user");
 		if(object != null){
-			User user = (User) object;
-			if(user.getRole().equals("ADMIN")){
-				filterChain.doFilter(request, response);
-			}else{
-				resp.sendRedirect(req.getContextPath() + "/home");
-			}
+			Customer user = (Customer) object;
+//			if(user.getRole().equals("ADMIN")){
+//				filterChain.doFilter(request, response);
+//			}else{
+//				resp.sendRedirect(req.getContextPath() + "/home");
+//			}
 		}else{
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}

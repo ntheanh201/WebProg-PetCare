@@ -10,25 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Products;
-import model.User;
+import model.Product;
+import model.Customer;
 import service.ProductsService;
 import service.UserService;
 import service.impl.ProductsServiceImpl;
 import service.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns={"/admin/admin-page"})
+@WebServlet(urlPatterns={"/admin"})
 public class AdminController extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProductsService ProductsService = new ProductsServiceImpl();
-		List<Products> dsProducts = ProductsService.getAll();
+		List<Product> dsProducts = ProductsService.getAll();
 		
 		UserService userService = new UserServiceImpl();
-		List<User> dskhachhang = userService.getAll();
+		List<Customer> dskhachhang = userService.getAll();
 		req.setAttribute("dskhachhang", dskhachhang);
 		req.setAttribute("dsProducts", dsProducts);
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/common/index.jsp");
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/admin/dashboard.jsp");
 		requestDispatcher.forward(req, resp);
 	}
 }

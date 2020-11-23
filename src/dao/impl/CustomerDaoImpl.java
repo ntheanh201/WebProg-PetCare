@@ -6,21 +6,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.UserDao;
+import dao.CustomerDao;
 import dao.RootDao;
-import model.User;
+import model.Customer;
 
-public class UserDaoImpl extends RootDao implements UserDao {
+public class CustomerDaoImpl extends RootDao implements CustomerDao {
 
 	@Override
-	public void addKhachHang(User khachHang) {
-		String sql = "INSERT INTO khachhang (name,username,password,role, email) VALUES (?,?,?,?,?) ";
+	public void addCustomer(Customer khachHang) {
+		String sql = "INSERT INTO khachhang (name,username,password, email) VALUES (?,?,?,?,?) ";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, khachHang.getName());
 			preparedStatement.setString(2, khachHang.getUsername());
 			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setString(4, khachHang.getRole());
 			preparedStatement.setString(5, khachHang.getEmail());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -30,14 +29,13 @@ public class UserDaoImpl extends RootDao implements UserDao {
 	}
 
 	@Override
-	public void editKhachHang(User khachHang) {
-		String sql = "UPDATE khachhang SET name = ?,username = ?,password = ?,role = ? WHERE id = ?";
+	public void editCustomer(Customer khachHang) {
+		String sql = "UPDATE customers SET name = ?,username = ?,password = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, khachHang.getName());
 			preparedStatement.setString(2, khachHang.getUsername());
 			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setString(4, khachHang.getRole());
 			preparedStatement.setInt(5, khachHang.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -47,8 +45,8 @@ public class UserDaoImpl extends RootDao implements UserDao {
 	}
 
 	@Override
-	public void deleteKhachHang(int id) {
-		String sql = "DELETE FROM khachhang WHERE id = ?";
+	public void deleteCustomer(int id) {
+		String sql = "DELETE FROM customers WHERE id = ?";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
@@ -62,21 +60,20 @@ public class UserDaoImpl extends RootDao implements UserDao {
 	}
 
 	@Override
-	public List<User> getAll() {
-		List<User> khachHangs = new ArrayList<User>();
+	public List<Customer> getAll() {
+		List<Customer> khachHangs = new ArrayList<Customer>();
 
-		String sql = "SELECT * FROM khachhang";
+		String sql = "SELECT * FROM customers";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				User khachHang = new User();
+				Customer khachHang = new Customer();
 				khachHang.setId(rs.getInt("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
-				khachHang.setRole(rs.getString("role"));
 				khachHangs.add(khachHang);
 			}
 		} catch (SQLException e) {
@@ -87,19 +84,18 @@ public class UserDaoImpl extends RootDao implements UserDao {
 	}
 
 	@Override
-	public User getByUsername(String username) {
-		String sql = "SELECT * FROM khachhang WHERE username = ?";
+	public Customer getByUsername(String username) {
+		String sql = "SELECT * FROM customers WHERE username = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, username);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				User khachHang = new User();
+				Customer khachHang = new Customer();
 				khachHang.setId(rs.getInt("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
-				khachHang.setRole(rs.getString("role"));
 				khachHang.setEmail(rs.getString("email"));
 				return khachHang;
 			}
@@ -112,19 +108,18 @@ public class UserDaoImpl extends RootDao implements UserDao {
 	}
 
 	@Override
-	public User getByID(int id) {
-		String sql = "SELECT * FROM khachhang WHERE id = ?";
+	public Customer getByID(int id) {
+		String sql = "SELECT * FROM customers WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				User khachHang = new User();
+				Customer khachHang = new Customer();
 				khachHang.setId(rs.getInt("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
-				khachHang.setRole(rs.getString("role"));
 				return khachHang;
 			}
 		} catch (SQLException e) {

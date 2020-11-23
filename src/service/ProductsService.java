@@ -2,22 +2,22 @@ package service;
 
 import java.util.List;
 
-import model.Products;
+import model.Product;
 
 public interface ProductsService {
-	void addSP(Products Products);
+	void addSP(Product Products);
 	
-	void editSP(Products Products);
+	void editSP(Product Products);
 	
 	void deleteSP(int id);
 	
-	List<Products> getAll();
+	List<Product> getAll();
 	
-	Products getByID(int id);
+	Product getByID(int id);
 	
-	List<Products> getByName(String tenSP);
+	List<Product> getByName(String tenSP);
 	
-	void updateImageSP(Products Products);
+	void updateImageSP(Product Products);
 	
-	List<Products> getProductByIDCategori(int id);
+	List<Product> getProductByIDCategori(int id);
 }

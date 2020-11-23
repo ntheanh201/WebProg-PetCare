@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //import org.mindrot.jbcrypt.BCrypt;
 
-import model.User;
+import model.Customer;
 import service.UserService;
 import service.impl.UserServiceImpl;
 import util.Hasher;
@@ -44,17 +44,16 @@ public class AddUserController extends HttpServlet{
 		String role = req.getParameter("role");
 		System.out.println("pass : " + hashed);
 		if(name != null && username != null && password != null && role != null) {
-			User khachHang = new User();
+			Customer khachHang = new Customer();
 			khachHang.setName(name);
 			khachHang.setUsername(username);
 			khachHang.setPassword(hashed);
-			khachHang.setRole(role);
 			khachHang.setEmail(email);
 			
 			UserService khachHangService = new UserServiceImpl();
 			khachHangService.addKhachHang(khachHang);
 			
-			resp.sendRedirect(req.getContextPath() + "/home");
+			resp.sendRedirect(req.getContextPath() + "/");
 		}
 	}
 }

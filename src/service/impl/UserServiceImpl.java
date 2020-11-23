@@ -2,25 +2,25 @@ package service.impl;
 
 import java.util.List;
 
-import dao.UserDao;
-import dao.impl.UserDaoImpl;
-import model.User;
+import dao.CustomerDao;
+import dao.impl.CustomerDaoImpl;
+import model.Customer;
 import service.UserService;
 import util.Hasher;
 
 public class UserServiceImpl implements UserService{
-	UserDao khachHangDao = new UserDaoImpl();
+	CustomerDao khachHangDao = new CustomerDaoImpl();
 	
 	@Override
-	public void addKhachHang(User khachHang) {
-		User khachHangNew = khachHangDao.getByUsername(khachHang.getUsername());
+	public void addKhachHang(Customer khachHang) {
+		Customer khachHangNew = khachHangDao.getByUsername(khachHang.getUsername());
 		if(khachHangNew == null)
 			khachHangDao.addKhachHang(khachHang);
 		else System.out.println("Username đã tồn tại");
 	}
 
 	@Override
-	public void editKhachHang(User khachHang) {
+	public void editKhachHang(Customer khachHang) {
 		khachHangDao.editKhachHang(khachHang);
 	}
 
@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<Customer> getAll() {
 		return khachHangDao.getAll();
 	}
 
 	@Override
-	public User getByUsername(String username) {
+	public Customer getByUsername(String username) {
 		// TODO Auto-generated method stub
 		return khachHangDao.getByUsername(username);
 	}
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
 	public boolean checkLogin(String username, String password) {
 		String hashed = Hasher.getHash(password);
 		System.out.println("hashed : " + hashed);
-		User khachHang = khachHangDao.getByUsername(username);
+		Customer khachHang = khachHangDao.getByUsername(username);
 		if(khachHang != null && khachHang.getPassword().equals(hashed)){
 			return true;
 		}
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getByID(int id) {
+	public Customer getByID(int id) {
 		return khachHangDao.getByID(id);
 	}
 

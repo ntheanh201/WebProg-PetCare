@@ -2,14 +2,14 @@ package service;
 
 import java.util.List;
 
-import model.Categories;
+import model.Category;
 
 public interface CategoriesService {
-	void addCategories(Categories categories);
+	void addCategories(Category categories);
 
-	void editCategories(Categories categories);
+	void editCategories(Category categories);
 
 	void deleteCategories(int id);
 
-	List<Categories> getAllCategories();
+	List<Category> getAllCategories();
 }

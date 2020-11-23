@@ -1,18 +1,19 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class User implements Serializable {
+public class Admin implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private String name;
-	private String email;
 	private String username;
 	private String password;
-	private String role;
+	private String name;
+	private String email;
+	private Date reg_date;
 	
 	public String getEmail() {
 		return email;
@@ -44,10 +45,12 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRole() {
-		return role;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
+	
+	
 }

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Categories;
-import model.Products;
+import model.Category;
+import model.Product;
 import service.CategoriesService;
 import service.ProductsService;
 import service.impl.CategoriesServiceImpl;
@@ -20,15 +20,19 @@ import service.impl.ProductsServiceImpl;
 @WebServlet(urlPatterns = { "/products/list-products" })
 public class ListProductsController extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ProductsService ProductsService = new ProductsServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Products> Productss = ProductsService.getAll();
+		List<Product> Productss = ProductsService.getAll();
 //		String iddanhmuc = req.getParameter("id_danhmuc");
 //		
 		CategoriesService categoriesService = new CategoriesServiceImpl();
-		List<Categories> categories = categoriesService.getAllCategories();
+		List<Category> categories = categoriesService.getAllCategories();
 ////		categories.forEach(cat -> {
 ////			System.out.println(cat.getId() + " " + cat.getName());
 ////		});

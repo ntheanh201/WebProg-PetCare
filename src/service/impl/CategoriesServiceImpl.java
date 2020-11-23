@@ -2,21 +2,21 @@ package service.impl;
 
 import java.util.List;
 
-import dao.CategoriesDao;
-import dao.impl.CategoriesDaoImpl;
-import model.Categories;
+import dao.CategoryDao;
+import dao.impl.CategoryDaoImpl;
+import model.Category;
 import service.CategoriesService;
 
 public class CategoriesServiceImpl implements CategoriesService{
-	CategoriesDao categorydao = new CategoriesDaoImpl();
+	CategoryDao categorydao = new CategoryDaoImpl();
 	
 	@Override
-	public void addCategories(Categories categories) {
+	public void addCategories(Category categories) {
 		categorydao.addCategories(categories);
 	}
 
 	@Override
-	public void editCategories(Categories categories) {
+	public void editCategories(Category categories) {
 		categorydao.editCategories(categories);
 	}
 
@@ -26,7 +26,7 @@ public class CategoriesServiceImpl implements CategoriesService{
 	}
 
 	@Override
-	public List<Categories> getAllCategories() {
+	public List<Category> getAllCategories() {
 		return categorydao.getAllCategories();
 	}
 

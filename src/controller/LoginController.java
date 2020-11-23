@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.User;
+import model.Customer;
 import service.UserService;
 import service.impl.UserServiceImpl;
 
@@ -39,16 +39,13 @@ public class LoginController extends HttpServlet {
 		System.out.println("user :" + username + " " +  password);
 		
 		if (username != null && password != null && userService.checkLogin(username, password)) {
-			User user = userService.getByUsername(username);
+			Customer user = userService.getByUsername(username);
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("user", user);
 			System.out.println("login successful");
-			if (user.getRole().equals("USER")) {
-				resp.sendRedirect(req.getContextPath() + "/home");
+			resp.sendRedirect(req.getContextPath() + "/home");
 //				System.out.println("userSession: " + httpSession.getAttribute("user").toString());
-			} else {
-				resp.sendRedirect(req.getContextPath() + "/admin/admin-page");
-			}
+			
 
 		} else {
 			System.out.println("fail login");

@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CategoriesDao;
-import dao.impl.CategoriesDaoImpl;
-import model.Categories;
+import dao.CategoryDao;
+import dao.impl.CategoryDaoImpl;
+import model.Category;
 import service.CategoriesService;
 import service.impl.CategoriesServiceImpl;
 
-@WebServlet(urlPatterns={"/admin/cate/addCategory"})
+@WebServlet(urlPatterns={"/admin/category/addCategory"})
 public class AddCateController extends HttpServlet{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	CategoriesDao CategoriesDao = new CategoriesDaoImpl();
+	CategoryDao CategoriesDao = new CategoryDaoImpl();
 	
 	CategoriesService CategoriesService = new CategoriesServiceImpl();
 	
@@ -40,13 +40,13 @@ public class AddCateController extends HttpServlet{
 		resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
 		String name = req.getParameter("name");
-		String category_Id = req.getParameter("category_Id");
+		String description = req.getParameter("description");
 		
-		Categories Categories = new Categories();
+		Category Categories = new Category();
 		Categories.setName(name);
-		Categories.setCate_id(Integer.parseInt(category_Id));
+		Categories.setDescription(description);
 		
 		CategoriesService.addCategories(Categories);
-		resp.sendRedirect(req.getContextPath() + "/home");
+		resp.sendRedirect(req.getContextPath() + "/admin");
 	}
 }

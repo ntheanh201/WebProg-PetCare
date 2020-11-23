@@ -2,20 +2,20 @@ package service;
 
 import java.util.List;
 
-import model.User;
+import model.Customer;
 
 public interface UserService {
-	void addKhachHang(User khachHang);
+	void addKhachHang(Customer khachHang);
 	
-	void editKhachHang(User khachHang);
+	void editKhachHang(Customer khachHang);
 	
 	void deleteKhachHang(int id);
 	
-	List<User> getAll();
+	List<Customer> getAll();
 	
-	User getByUsername(String username);
+	Customer getByUsername(String username);
 	
-	User getByID(int id);
+	Customer getByID(int id);
 	
 	boolean checkLogin(String username, String password);
 }

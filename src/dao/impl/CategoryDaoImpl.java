@@ -6,19 +6,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.CategoriesDao;
+import dao.CategoryDao;
 import dao.RootDao;
-import model.Categories;
+import model.Category;
 
-public class CategoriesDaoImpl extends RootDao implements CategoriesDao{
+public class CategoryDaoImpl extends RootDao implements CategoryDao{
 
 	@Override
-	public void addCategories(Categories categories) {
-		String sql = "INSERT INTO categories (name, cate_id) VALUES (?, ?)";
+	public void addCategory(Category categories) {
+		String sql = "INSERT INTO categories (name, description) VALUES (?, ?)";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, categories.getName());
-			preparedStatement.setInt(2, categories.getCate_id());
+			preparedStatement.setString(2, categories.getDescription());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -28,7 +28,7 @@ public class CategoriesDaoImpl extends RootDao implements CategoriesDao{
 	}
 
 	@Override
-	public void editCategories(Categories categories) {
+	public void editCategory(Category categories) {
 		String sql = "UPDATE categiries SET name = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
@@ -41,7 +41,7 @@ public class CategoriesDaoImpl extends RootDao implements CategoriesDao{
 	}
 
 	@Override
-	public void deleteCategories(int id) {
+	public void deleteCategory(int id) {
 		String sql = "DELETE FROM categories WHERE id = ?";
 
 		try {
@@ -55,18 +55,18 @@ public class CategoriesDaoImpl extends RootDao implements CategoriesDao{
 	}
 
 	@Override
-	public List<Categories> getAllCategories() {
-		List<Categories> categories = new ArrayList<Categories>();
+	public List<Category> getAllCategories() {
+		List<Category> categories = new ArrayList<Category>();
 		
 		String sql = "SELECT * FROM categories";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()){
-				Categories categories2 = new Categories();
+				Category categories2 = new Category();
 				categories2.setId(rs.getInt("id"));
 				categories2.setName(rs.getString("name"));
-				categories2.setCate_id(rs.getInt("cate_id"));
+				categories2.setDescription(rs.getString("description"));
 				
 				categories.add(categories2);
 			}

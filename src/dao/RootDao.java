@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public abstract class RootDao {
 	public static Connection getJDBCconnection(){
-		final String url = "jdbc:mysql://localhost:3306/shop";
+		final String url = "jdbc:mysql://localhost:3306/pet_shop";
 		final String user = "root";
 		final String password = "root";
 		try {
