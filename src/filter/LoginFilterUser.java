@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns={"/member/*"})
+@WebFilter(urlPatterns={"/customers/*"})
 public class LoginFilterUser implements Filter{
 
 	@Override

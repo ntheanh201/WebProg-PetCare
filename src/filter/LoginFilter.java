@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Customer;
 
-@WebFilter(urlPatterns={"/admin/*"})
+//@WebFilter(urlPatterns={"/admin/*"})
 public class LoginFilter implements Filter{
 
 	@Override
@@ -38,7 +38,7 @@ public class LoginFilter implements Filter{
 //				resp.sendRedirect(req.getContextPath() + "/home");
 //			}
 		}else{
-			resp.sendRedirect(req.getContextPath() + "/login");
+			resp.sendRedirect(req.getContextPath() + "/admin/login");
 		}
 		
 	}

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Product;
-import service.ProductsService;
-import service.impl.ProductsServiceImpl;
+import service.ProductService;
+import service.impl.ProductServiceImpl;
 
 @WebServlet(urlPatterns={"/product/detail"})
 public class DetailProductController extends HttpServlet{
@@ -19,7 +19,7 @@ public class DetailProductController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		System.out.println("query id : " + id);
-		ProductsService ProductService = new ProductsServiceImpl();
+		ProductService ProductService = new ProductServiceImpl();
 		Product Product = ProductService.getByID(Integer.valueOf(id));
 //		Products Product = ProductService.getByID(Integer.valueOf(id));
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/product/detail.jsp");

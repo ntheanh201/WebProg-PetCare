@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
 import service.CategoriesService;
-import service.ProductsService;
+import service.ProductService;
 import service.impl.CategoriesServiceImpl;
-import service.impl.ProductsServiceImpl;
+import service.impl.ProductServiceImpl;
 
 @WebServlet(urlPatterns = { "/products/list-products" })
 public class ListProductsController extends HttpServlet {
@@ -24,7 +24,7 @@ public class ListProductsController extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ProductsService ProductsService = new ProductsServiceImpl();
+	ProductService ProductsService = new ProductServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

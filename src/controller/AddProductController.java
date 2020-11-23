@@ -19,9 +19,9 @@ import dao.impl.ProductDaoImpl;
 import model.Category;
 import model.Product;
 import service.CategoriesService;
-import service.ProductsService;
+import service.ProductService;
 import service.impl.CategoriesServiceImpl;
-import service.impl.ProductsServiceImpl;
+import service.impl.ProductServiceImpl;
 
 @WebServlet(urlPatterns={"/admin/products/addProduct"})
 @MultipartConfig(maxFileSize = 16177215)
@@ -34,7 +34,7 @@ public class AddProductController extends HttpServlet{
 		
 	ProductDao ProductsDao = new ProductDaoImpl();
 	
-	ProductsService ProductsService = new ProductsServiceImpl();
+	ProductService ProductsService = new ProductServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
