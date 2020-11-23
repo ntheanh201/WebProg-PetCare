@@ -12,17 +12,17 @@ public class CategoriesServiceImpl implements CategoriesService{
 	
 	@Override
 	public void addCategories(Category categories) {
-		categorydao.addCategories(categories);
+		categorydao.addCategory(categories);
 	}
 
 	@Override
 	public void editCategories(Category categories) {
-		categorydao.editCategories(categories);
+		categorydao.editCategory(categories);
 	}
 
 	@Override
 	public void deleteCategories(int id) {
-		categorydao.deleteCategories(id);
+		categorydao.deleteCategory(id);
 	}
 
 	@Override

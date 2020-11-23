@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
                 <a href="./admin/customers" class="pure-menu-link">Customers</a>
               </li>
               <li class="menu-item-divided">
-                <a href="profile.html" class="pure-menu-link">Profile</a>
+                <a href="./profile" class="pure-menu-link">Profile</a>
               </li>
             </ul>
           </div>

@@ -72,7 +72,7 @@ public class AddProductController extends HttpServlet{
 		Products.setDescription(description);
 		Products.setPhoto(filePart);
 		
-		ProductsService.addSP(Products);
+		ProductsService.addProduct(Products);
 		resp.sendRedirect(req.getContextPath() + "/admin/admin-page");
 	}
 }

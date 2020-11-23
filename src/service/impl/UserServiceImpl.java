@@ -15,18 +15,18 @@ public class UserServiceImpl implements UserService{
 	public void addKhachHang(Customer khachHang) {
 		Customer khachHangNew = khachHangDao.getByUsername(khachHang.getUsername());
 		if(khachHangNew == null)
-			khachHangDao.addKhachHang(khachHang);
+			khachHangDao.addCustomer(khachHang);
 		else System.out.println("Username đã tồn tại");
 	}
 
 	@Override
 	public void editKhachHang(Customer khachHang) {
-		khachHangDao.editKhachHang(khachHang);
+		khachHangDao.editCustomer(khachHang);
 	}
 
 	@Override
 	public void deleteKhachHang(int id) {
-		khachHangDao.deleteKhachHang(id);
+		khachHangDao.deleteCustomer(id);
 	}
 
 	@Override
