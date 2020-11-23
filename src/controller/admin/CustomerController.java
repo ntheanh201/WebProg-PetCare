@@ -17,8 +17,8 @@ import service.UserService;
 import service.impl.ProductServiceImpl;
 import service.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns={"/admin/products"})
-public class ProductController extends HttpServlet{
+@WebServlet(urlPatterns={"/admin/customers"})
+public class CustomerController extends HttpServlet{
 	/**
 	 * 
 	 */
@@ -26,7 +26,14 @@ public class ProductController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/admin/products.jsp");
+//		ProductService ProductsService = new ProductServiceImpl();
+//		List<Product> dsProducts = ProductsService.getAll();
+//		
+//		UserService userService = new UserServiceImpl();
+//		List<Customer> dskhachhang = userService.getAll();
+//		req.setAttribute("dskhachhang", dskhachhang);
+//		req.setAttribute("dsProducts", dsProducts);
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/admin/customers.jsp");
 		requestDispatcher.forward(req, resp);
 	}
 }

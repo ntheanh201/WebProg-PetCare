@@ -15,7 +15,7 @@ import service.UserService;
 import service.impl.UserServiceImpl;
 
 @WebServlet(urlPatterns = { "/admin/login" })
-public class LoginController extends HttpServlet {
+public class AdminLoginController extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("user", user);
 			System.out.println("login successful");
-			resp.sendRedirect(req.getContextPath() + "/admin");
+			resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
 		} else {
 			System.out.println("fail login");
 			resp.sendRedirect(req.getContextPath() + "/login");

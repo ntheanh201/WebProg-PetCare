@@ -396,7 +396,7 @@ legend {
   color: rgba(0, 0, 0, 0.8);
   border: 1px solid #999;
   border: transparent;
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
   text-decoration: none;
   border-radius: 2px;
 }

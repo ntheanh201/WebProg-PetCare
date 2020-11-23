@@ -4,15 +4,16 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link
+        <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/admin-style.css"
     />
+   
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/pure-min.css"
     />
-    <link
+     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/pure-responsive-min.css"
     />
@@ -20,30 +21,30 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div id="layout" class="pure-g">
-      <div class="sidebar pure-u-1 pure-u-md-3-24">
+      <div class="sidebar pure-u-1 pure-u-md-4-24">
         <div id="menu">
           <div class="pure-menu">
             <p class="pure-menu-heading">
               PetCare
-              <a href="/login" class="pure-button button-xxsmall"
+              <a href="./login" class="pure-button button-xxsmall"
                 >OUT &raquo;</a
               >
             </p>
             <ul class="pure-menu-list">
               <li>
-                <a href="/admin" class="pure-menu-link">Dashboard</a>
+                <a href="./dashboard" class="pure-menu-link">Dashboard</a>
               </li>
               <li class="pure-menu-selected">
-                <a href="./admin/products" class="pure-menu-link">Products</a>
+                <a href="./products" class="pure-menu-link">Products</a>
               </li>
               <li>
-                <a href="./admin/orders" class="pure-menu-link">Orders</a>
+                <a href="./orders" class="pure-menu-link">Orders</a>
               </li>
               <li>
-                <a href="./admin/customers" class="pure-menu-link">Customers</a>
+                <a href="./customers" class="pure-menu-link">Customers</a>
               </li>
               <li class="menu-item-divided">
-                <a href="profile.html" class="pure-menu-link">Profile</a>
+                <a href="./profile" class="pure-menu-link">Profile</a>
               </li>
             </ul>
           </div>
@@ -57,7 +58,7 @@ pageEncoding="UTF-8"%>
               Product List
               <a
                 class="pure-button button-small button-secondary"
-                href="/addProduct"
+                href="./addProduct"
                 >Add New</a
               >
             </h1>

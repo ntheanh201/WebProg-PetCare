@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 //import service.SanPhamService;
 //import service.impl.SanPhamServiceImpl;
 
-@WebServlet(urlPatterns={"/"})
+@WebServlet(urlPatterns={"/home"})
 public class HomeController extends HttpServlet{
 	
 	/**

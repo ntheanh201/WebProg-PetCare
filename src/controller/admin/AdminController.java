@@ -17,7 +17,7 @@ import service.UserService;
 import service.impl.ProductServiceImpl;
 import service.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns={"/admin"})
+@WebServlet(urlPatterns={"/admin/dashboard"})
 public class AdminController extends HttpServlet{
 	/**
 	 * 
@@ -26,13 +26,13 @@ public class AdminController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProductService ProductsService = new ProductServiceImpl();
-		List<Product> dsProducts = ProductsService.getAll();
-		
-		UserService userService = new UserServiceImpl();
-		List<Customer> dskhachhang = userService.getAll();
-		req.setAttribute("dskhachhang", dskhachhang);
-		req.setAttribute("dsProducts", dsProducts);
+//		ProductService ProductsService = new ProductServiceImpl();
+//		List<Product> dsProducts = ProductsService.getAll();
+//		
+//		UserService userService = new UserServiceImpl();
+//		List<Customer> dskhachhang = userService.getAll();
+//		req.setAttribute("dskhachhang", dskhachhang);
+//		req.setAttribute("dsProducts", dsProducts);
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/admin/dashboard.jsp");
 		requestDispatcher.forward(req, resp);
 	}

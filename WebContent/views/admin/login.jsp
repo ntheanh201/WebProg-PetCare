@@ -16,6 +16,10 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/pure-responsive-min.css"
     />
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/static/css/login.css"
+    />
     <title>PetCare Admin Login</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap"
@@ -37,7 +41,7 @@ pageEncoding="UTF-8"%>
                 <span>PetCare</span>
               </div>
               <div class="title">Login</div>
-              <form action="/login" method="post" class="login-form">
+              <form action="./login" method="post" class="login-form">
                 <input type="text" placeholder="Username" name="username" />
                 <input type="password" placeholder="Password" name="password" />
                 <div class="forgot-password">
@@ -53,12 +57,12 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="extern-button">
                   <button class="btn btn-external">
-                    <img src="./assets/image/gg.svg" alt="" />
+                    <img src="${pageContext.request.contextPath}/static/image/gg.svg" alt="" />
                     <span>Google</span>
                   </button>
                   <button class="btn btn-external btn-fb">
                     <div class="rounded">
-                      <img src="./assets/image/fb.svg" alt="" />
+                      <img src="${pageContext.request.contextPath}/static/image/fb.svg" alt="" />
                     </div>
                     <span>Facebook</span>
                   </button>

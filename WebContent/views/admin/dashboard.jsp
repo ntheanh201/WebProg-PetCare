@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/admin-style.css"
+      
     />
     <link
       rel="stylesheet"
@@ -25,22 +26,22 @@ pageEncoding="UTF-8"%>
           <div class="pure-menu">
             <p class="pure-menu-heading">
               PetCare
-              <a href="login.html" class="pure-button button-xxsmall"
+              <a href="./login" class="pure-button button-xxsmall"
                 >OUT &raquo;</a
               >
             </p>
             <ul class="pure-menu-list">
               <li class="pure-menu-selected">
-                <a href="/admin" class="pure-menu-link">Dashboard</a>
+                <a href="./dashboard" class="pure-menu-link">Dashboard</a>
               </li>
               <li>
-                <a href="./admin/products" class="pure-menu-link">Products</a>
+                <a href="./products" class="pure-menu-link">Products</a>
               </li>
               <li>
-                <a href="./admin/orders" class="pure-menu-link">Orders</a>
+                <a href="./orders" class="pure-menu-link">Orders</a>
               </li>
               <li>
-                <a href="./admin/customers" class="pure-menu-link">Customers</a>
+                <a href="./customers" class="pure-menu-link">Customers</a>
               </li>
               <li class="menu-item-divided">
                 <a href="./profile" class="pure-menu-link">Profile</a>
