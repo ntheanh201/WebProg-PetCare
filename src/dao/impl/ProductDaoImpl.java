@@ -21,7 +21,7 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 
 	@Override
 	public void addProduct(Product Products){
-		String sql = "INSERT INTO products (name,code,brief,price,category_id,description,photo) VALUES (?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO products (name,price,category_id,description,photo) VALUES (?,?,?,?,?,?,?) ";
 		
 //		CategoriesService categoriesService =  new CategoriesServiceImpl();
 		

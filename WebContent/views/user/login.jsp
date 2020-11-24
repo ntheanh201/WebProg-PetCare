@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 	<jsp:include page="/views/common/head.jsp"></jsp:include>
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
-
+	<link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/static/css/login-register.css"
+    />
   <!-- form login -->
   <div class="formLogin" id="formLogin">
   	<a href="/shop-pet/home">
@@ -16,7 +18,7 @@
 		<c:url value="/login" var="loginUrl"></c:url>
 		<form action="${loginUrl }" method="post">
         <div class="form-group">
-          <label for="username">UserName</label>
+          <label for="username">Username</label>
           <input type="text" name="username" required class="form-control">
         </div>
         <div class="form-group">

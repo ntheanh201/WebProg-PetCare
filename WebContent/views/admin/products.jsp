@@ -58,7 +58,7 @@ pageEncoding="UTF-8"%>
               Product List
               <a
                 class="pure-button button-small button-secondary"
-                href="./addProduct"
+                href="./products/addProduct"
                 >Add New</a
               >
             </h1>

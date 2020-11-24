@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/static/css/login.css"
     />
-    <title>PetCare Admin Login</title>
+    <title>PetCare Admin Register</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap"
       rel="stylesheet"
@@ -40,14 +40,15 @@ pageEncoding="UTF-8"%>
                 <img src="" alt="" />
                 <span>PetCare Admin</span>
               </div>
-              <div class="title">Login</div>
-              <form action="../home" method="get" class="login-form">
+              <div class="title">Register</div>
+              <form action="./register" method="post" class="login-form">
                 <input type="text" placeholder="Username" name="username" />
                 <input type="password" placeholder="Password" name="password" />
+                <input type="password" placeholder="Re-Enter Password" name="re-password" />
                 <div class="forgot-password">
                   <a href="./forgot-password">Forgot password?</a>
                 </div>
-                <button class="btn btn-submit">Login</button>
+                <button class="btn btn-submit">Register</button>
               </form>
               <div class="external-signin">
                 <div class="external-signin-title">

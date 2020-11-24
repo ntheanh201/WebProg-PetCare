@@ -26,7 +26,7 @@ public class AddUserController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/user/register.jsp");
-//		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/common/index.jsp");
+//		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/ui/register.jsp");
 		requestDispatcher.forward(req, resp);
 //		doPost(req, resp);
 	}

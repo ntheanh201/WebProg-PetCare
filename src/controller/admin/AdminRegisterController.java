@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import java.io.IOException;
 
@@ -14,8 +14,8 @@ import model.Customer;
 import service.UserService;
 import service.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns = { "/login" })
-public class LoginController extends HttpServlet {
+@WebServlet(urlPatterns = { "/admin/register" })
+public class AdminRegisterController extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -24,8 +24,7 @@ public class LoginController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/user/login.jsp");
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/ui/login.jsp");
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/admin/register.jsp");
 		requestDispatcher.forward(req, resp);
 	}
 
@@ -43,13 +42,10 @@ public class LoginController extends HttpServlet {
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("user", user);
 			System.out.println("login successful");
-			resp.sendRedirect(req.getContextPath() + "/home");
-//				System.out.println("userSession: " + httpSession.getAttribute("user").toString());
-			
-
+			resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
 		} else {
-			System.out.println("fail login");
-			resp.sendRedirect(req.getContextPath() + "/login");
+			System.out.println("fail register");
+			resp.sendRedirect(req.getContextPath() + "/register");
 		}
 	}
 }
