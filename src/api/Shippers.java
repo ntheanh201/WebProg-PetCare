@@ -34,7 +34,7 @@ public class Shippers extends HttpServlet {
 
 		_gson = new Gson();
 
-		List<Shipper> Shippers = ShipperDao.getAllCategories();
+		List<Shipper> Shippers = ShipperDao.getAll();
 		for (Shipper s : Shippers) {
 			String id = s.getId();
 			_modelsDb.put(id, s);
