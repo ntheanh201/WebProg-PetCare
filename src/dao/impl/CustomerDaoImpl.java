@@ -14,15 +14,16 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 
 	@Override
 	public void addCustomer(Customer khachHang) {
-		String sql = "INSERT INTO customers (id, name, username, password, email, phoneNumber, address) VALUES (?,?,?,?,?,?) ";
+		String sql = "INSERT INTO customers (id, name, username, password, email, phoneNumber, address) VALUES (?,?,?,?,?,?,?) ";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, khachHang.getName());
-			preparedStatement.setString(2, khachHang.getUsername());
-			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setString(4, khachHang.getEmail());
-			preparedStatement.setString(5, khachHang.getPhoneNumber());
-			preparedStatement.setString(6, khachHang.getAddress());
+			preparedStatement.setString(1, khachHang.getId());
+			preparedStatement.setString(2, khachHang.getName());
+			preparedStatement.setString(3, khachHang.getUsername());
+			preparedStatement.setString(4, khachHang.getPassword());
+			preparedStatement.setString(5, khachHang.getEmail());
+			preparedStatement.setString(6, khachHang.getPhoneNumber());
+			preparedStatement.setString(7, khachHang.getAddress());
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

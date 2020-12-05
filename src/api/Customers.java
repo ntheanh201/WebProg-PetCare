@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import dao.CustomerDao;
 import dao.impl.CustomerDaoImpl;
 import model.Customer;
+import util.Hasher;
 
 @WebServlet(urlPatterns = { "/customers/*" })
 public class Customers extends HttpServlet {
@@ -102,6 +103,10 @@ public class Customers extends HttpServlet {
 			Customer model = _gson.fromJson(payload, Customer.class);
 						
 			model.setId(UUID.randomUUID().toString());
+			
+			String hashed = Hasher.getHash(model.getPassword());
+			
+			model.setPassword(hashed);
 			
 			CustomerDao.addCustomer(model);
 			

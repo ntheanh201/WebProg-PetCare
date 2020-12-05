@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import dao.ShipperDao;
 import dao.impl.ShipperDaoImpl;
 import model.Shipper;
+import util.Hasher;
 
 @WebServlet(urlPatterns = { "/shippers/*" })
 public class Shippers extends HttpServlet {
@@ -102,6 +103,8 @@ public class Shippers extends HttpServlet {
 			Shipper model = _gson.fromJson(payload, Shipper.class);
 						
 			model.setId(UUID.randomUUID().toString());
+			String hashed = Hasher.getHash(model.getPassword());
+			model.setPassword(hashed);
 			
 			ShipperDao.addShipper(model);
 			
