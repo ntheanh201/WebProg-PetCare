@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Category implements Serializable {
 	/**
@@ -11,6 +12,7 @@ public class Category implements Serializable {
 	private String id;
 	private String name;
 	private String description;
+	private Date created_at;
 	
 	public String getDescription() {
 		return description;
@@ -36,4 +38,11 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
 }

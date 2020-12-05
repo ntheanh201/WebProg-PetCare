@@ -14,46 +14,49 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 
 	@Override
 	public void addCustomer(Customer khachHang) {
-		String sql = "INSERT INTO khachhang (name,username,password, email) VALUES (?,?,?,?,?) ";
+		String sql = "INSERT INTO customers (id, name, username, password, email, phoneNumber, address) VALUES (?,?,?,?,?,?) ";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, khachHang.getName());
 			preparedStatement.setString(2, khachHang.getUsername());
 			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setString(5, khachHang.getEmail());
+			preparedStatement.setString(4, khachHang.getEmail());
+			preparedStatement.setString(5, khachHang.getPhoneNumber());
+			preparedStatement.setString(6, khachHang.getAddress());
+			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void editCustomer(Customer khachHang) {
-		String sql = "UPDATE customers SET name = ?,username = ?,password = ? WHERE id = ?";
+		String sql = "UPDATE customers SET name = ?, username = ?, password = ?, email = ?, phoneNumber = ?, address = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, khachHang.getName());
 			preparedStatement.setString(2, khachHang.getUsername());
 			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setString(5, khachHang.getId());
+			preparedStatement.setString(4, khachHang.getEmail());
+			preparedStatement.setString(5, khachHang.getPhoneNumber());
+			preparedStatement.setString(6, khachHang.getAddress());
+			preparedStatement.setString(7, khachHang.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void deleteCustomer(int id) {
+	public void deleteCustomer(String id) {
 		String sql = "DELETE FROM customers WHERE id = ?";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -61,7 +64,7 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 
 	@Override
 	public List<Customer> getAll() {
-		List<Customer> khachHangs = new ArrayList<Customer>();
+		List<Customer> customers = new ArrayList<Customer>();
 
 		String sql = "SELECT * FROM customers";
 
@@ -74,13 +77,17 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
-				khachHangs.add(khachHang);
+				khachHang.setEmail(rs.getString("email"));
+				khachHang.setPhoneNumber(rs.getString("phoneNumber"));
+				khachHang.setAddress(rs.getString("address"));
+				khachHang.setReg_date(rs.getDate("reg_date"));
+				
+				customers.add(khachHang);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return khachHangs;
+		return customers;
 	}
 
 	@Override
@@ -97,10 +104,13 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
 				khachHang.setEmail(rs.getString("email"));
+				khachHang.setPhoneNumber(rs.getString("phoneNumber"));
+				khachHang.setAddress(rs.getString("address"));
+				khachHang.setReg_date(rs.getDate("reg_date"));
+				
 				return khachHang;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -108,11 +118,11 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 	}
 
 	@Override
-	public Customer getByID(int id) {
+	public Customer getByID(String id) {
 		String sql = "SELECT * FROM customers WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Customer khachHang = new Customer();
@@ -120,10 +130,13 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
+				khachHang.setPhoneNumber(rs.getString("phoneNumber"));
+				khachHang.setAddress(rs.getString("address"));
+				khachHang.setReg_date(rs.getDate("reg_date"));
+				
 				return khachHang;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

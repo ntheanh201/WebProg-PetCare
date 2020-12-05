@@ -9,11 +9,11 @@ public interface CustomerDao {
 	
 	void editCustomer(Customer cus);
 	
-	void deleteCustomer(int id);
+	void deleteCustomer(String id);
 	
 	List<Customer> getAll();
 	
 	Customer getByUsername(String username);
 	
-	Customer getByID(int id);
+	Customer getByID(String id);
 }

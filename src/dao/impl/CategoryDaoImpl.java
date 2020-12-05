@@ -14,14 +14,14 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 
 	@Override
 	public void addCategory(Category categories) {
-		String sql = "INSERT INTO categories (name, description) VALUES (?, ?)";
+		String sql = "INSERT INTO categories (id, name, description) VALUES (?, ?, ?)";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, categories.getName());
-			preparedStatement.setString(2, categories.getDescription());
+			preparedStatement.setString(1, categories.getId());
+			preparedStatement.setString(2, categories.getName());
+			preparedStatement.setString(3, categories.getDescription());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -35,7 +35,6 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 			preparedStatement.setString(1, categories.getName());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,7 +48,6 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 			preparedStatement.setString(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
@@ -63,15 +61,13 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()){
-				Category categories2 = new Category();
-				categories2.setId(rs.getString("id"));
-				categories2.setName(rs.getString("name"));
-				categories2.setDescription(rs.getString("description"));
-				
-				categories.add(categories2);
+				Category category = new Category();
+				category.setId(rs.getString("id"));
+				category.setName(rs.getString("name"));
+				category.setDescription(rs.getString("description"));
+				categories.add(category);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return categories;
