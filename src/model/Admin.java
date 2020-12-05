@@ -8,7 +8,7 @@ public class Admin implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private String id;
 	private String username;
 	private String password;
 	private String name;
@@ -21,10 +21,10 @@ public class Admin implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {

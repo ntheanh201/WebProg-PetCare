@@ -9,7 +9,7 @@ public interface CategoryDao {
 
 	void editCategory(Category category);
 
-	void deleteCategory(int id);
+	void deleteCategory(String id);
 
 	List<Category> getAllCategories();
 }

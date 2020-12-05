@@ -8,15 +8,15 @@ public class Order implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private String id;
 	private String status;
 	private float total_price;
-	private int customer_id;
+	private String customer_id;
 	private Date date;
 	
 	
 	
-	public Order(String status, float total_price, int customer_id, Date date) {
+	public Order(String status, float total_price, String customer_id, Date date) {
 		super();
 		this.status = status;
 		this.total_price = total_price;
@@ -24,10 +24,10 @@ public class Order implements Serializable {
 		this.date = date;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getStatus() {
@@ -42,10 +42,10 @@ public class Order implements Serializable {
 	public void setTotal_price(float total_price) {
 		this.total_price = total_price;
 	}
-	public int getCustomer_id() {
+	public String getCustomer_id() {
 		return customer_id;
 	}
-	public void setCustomer_id(int customer_id) {
+	public void setCustomer_id(String customer_id) {
 		this.customer_id = customer_id;
 	}
 	public Date getDate() {

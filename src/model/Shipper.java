@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Customer implements Serializable {
+public class Shipper implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,8 +13,6 @@ public class Customer implements Serializable {
 	private String password;
 	private String name;
 	private String email;
-	private String phoneNumber;
-	private String address;
 	private Date reg_date;
 	
 	public String getEmail() {
@@ -46,18 +44,6 @@ public class Customer implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public Date getReg_date() {
 		return reg_date;

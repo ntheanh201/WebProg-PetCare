@@ -9,15 +9,15 @@ public interface ProductDao {
 	
 	void editProduct(Product product);
 	
-	void deleteProduct(int id);
+	void deleteProduct(String id);
 	
 	List<Product> getAll();
 	
-	Product getByID(int id);
+	Product getByID(String id);
 	
 	List<Product> getByName(String productName);
 	
 	void updateImage(Product product);
 	
-	List<Product> getProductByCategory(int categoryId);
+	List<Product> getProductByCategory(String categoryId);
 }

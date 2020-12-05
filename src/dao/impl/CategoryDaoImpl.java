@@ -41,12 +41,12 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 	}
 
 	@Override
-	public void deleteCategory(int id) {
+	public void deleteCategory(String id) {
 		String sql = "DELETE FROM categories WHERE id = ?";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +64,7 @@ public class CategoryDaoImpl extends RootDao implements CategoryDao{
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()){
 				Category categories2 = new Category();
-				categories2.setId(rs.getInt("id"));
+				categories2.setId(rs.getString("id"));
 				categories2.setName(rs.getString("name"));
 				categories2.setDescription(rs.getString("description"));
 				

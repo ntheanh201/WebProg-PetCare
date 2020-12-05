@@ -36,7 +36,7 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 			preparedStatement.setString(1, khachHang.getName());
 			preparedStatement.setString(2, khachHang.getUsername());
 			preparedStatement.setString(3, khachHang.getPassword());
-			preparedStatement.setInt(5, khachHang.getId());
+			preparedStatement.setString(5, khachHang.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +70,7 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Customer khachHang = new Customer();
-				khachHang.setId(rs.getInt("id"));
+				khachHang.setId(rs.getString("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
@@ -92,7 +92,7 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Customer khachHang = new Customer();
-				khachHang.setId(rs.getInt("id"));
+				khachHang.setId(rs.getString("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));
@@ -116,7 +116,7 @@ public class CustomerDaoImpl extends RootDao implements CustomerDao {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Customer khachHang = new Customer();
-				khachHang.setId(rs.getInt("id"));
+				khachHang.setId(rs.getString("id"));
 				khachHang.setName(rs.getString("name"));
 				khachHang.setUsername(rs.getString("username"));
 				khachHang.setPassword(rs.getString("password"));

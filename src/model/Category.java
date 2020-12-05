@@ -8,7 +8,7 @@ public class Category implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private String id;
 	private String name;
 	private String description;
 	
@@ -20,11 +20,11 @@ public class Category implements Serializable {
 		this.description = description;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

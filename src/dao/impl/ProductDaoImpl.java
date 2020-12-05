@@ -20,66 +20,70 @@ import service.impl.CategoriesServiceImpl;
 public class ProductDaoImpl extends RootDao implements ProductDao {
 
 	@Override
-	public void addProduct(Product Products){
-		String sql = "INSERT INTO products (name,price,category_id,description,photo) VALUES (?,?,?,?,?,?,?) ";
-		
-//		CategoriesService categoriesService =  new CategoriesServiceImpl();
-		
+	public void addProduct(Product product){
+		String sql = "INSERT INTO products (id, name, description, price, quantity, category_id, supplier_id, image, photo) VALUES (?,?,?,?,?,?,?,?,?) ";
+				
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, Products.getName());
-			preparedStatement.setString(2, Products.getCode());
-			preparedStatement.setString(3, Products.getBrief());
-			preparedStatement.setDouble(4, Products.getPrice());
-			preparedStatement.setInt(5, Products.getCategory_id());
-			preparedStatement.setString(6, Products.getDescription());
+			preparedStatement.setString(1, product.getId());
+			preparedStatement.setString(2, product.getName());
+			preparedStatement.setString(3, product.getDescription());
+			preparedStatement.setFloat(4, product.getPrice());
+			preparedStatement.setInt(5, product.getQuantity());
+			preparedStatement.setString(6, product.getCategory_id());
+			preparedStatement.setString(7, product.getSupplier_id());
 			
-			InputStream inputStream = null; // input stream of the upload file
-	        if (Products.getPhoto() != null) {
-	        	Part filePart = Products.getPhoto();
+			InputStream image = null;
+			if (product.getPhoto() != null) {
+	        	Part filePart = product.getImage();
+	        	image = filePart.getInputStream();
+	        }
+	        if (image != null) {
+	        	preparedStatement.setBlob(8, image);
+            }
+	        
+			InputStream inputStream = null;
+	        if (product.getPhoto() != null) {
+	        	Part filePart = product.getPhoto();
 	        	inputStream = filePart.getInputStream();
 	        }
 	        if (inputStream != null) {
-	        	preparedStatement.setBlob(7, inputStream);
+	        	preparedStatement.setBlob(9, inputStream);
             }
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void editProduct(Product Products) {
-		String sql = "UPDATE products SET name = ?,maSP = ?,brief = ?,price = ? WHERE id = ?";
+	public void editProduct(Product product) {
+		String sql = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, Products.getName());
-			preparedStatement.setString(2, Products.getCode());
-			preparedStatement.setString(3, Products.getBrief());
-			preparedStatement.setDouble(4, Products.getPrice());
-			preparedStatement.setInt(5, Products.getId());
+			preparedStatement.setString(1, product.getName());
+			preparedStatement.setString(2, product.getDescription());
+			preparedStatement.setFloat(3, product.getPrice());
+			preparedStatement.setInt(4, product.getQuantity());
+			preparedStatement.setString(5, product.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	@Override
-	public void deleteProduct(int id) {
+	public void deleteProduct(String id) {
 		String sql = "DELETE FROM products WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -87,53 +91,53 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 
 	@Override
 	public List<Product> getAll() {
-		List<Product> Productss = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		String sql = "SELECT * FROM products";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Product Products = new Product();
-				Products.setId(rs.getInt("id"));
-				Products.setName(rs.getString("name"));
-				Products.setCode(rs.getString("code"));
-				Products.setBrief(rs.getString("brief"));
-				Products.setImage(rs.getString("image"));
-				Products.setPrice(rs.getDouble("price"));
-				Products.setDescription(rs.getString("description"));	
-				Products.setCategory_id(rs.getInt("category_id"));
-//				Products.setPhoto(rs.getBlob("photo"));
-				Productss.add(Products);
+				Product product = new Product();
+				product.setId(rs.getString("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setPrice(rs.getFloat("price"));
+				product.setDescription(rs.getString("quantity"));
+				product.setCategory_id(rs.getString("category_id"));
+				product.setSupplier_id(rs.getString("supplier_id"));
+				product.setCreated_at(rs.getDate("created_at"));
+//				product.setPhoto(rs.getBlob("photo"));
+				
+				products.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return Productss;
+		return products;
 	}
 
 	@Override
-	public Product getByID(int id) {
+	public Product getByID(String id) {
 		String sql = "SELECT * FROM products WHERE id = ?";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Product Products = new Product();
-				Products.setId(rs.getInt("id"));
-				Products.setName(rs.getString("name"));
-				Products.setCode(rs.getString("code"));
-				Products.setBrief(rs.getString("brief"));
-				Products.setPrice(rs.getDouble("price"));
-				Products.setDescription(rs.getString("description"));
-				return Products;
+				Product product = new Product();
+				product.setId(rs.getString("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setPrice(rs.getFloat("price"));
+				product.setCategory_id(rs.getString("description"));
+				product.setCategory_id(rs.getString("description"));
+				return product;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -141,7 +145,7 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 
 	@Override
 	public List<Product> getByName(String name) {
-		List<Product> Productss = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		String sql = "SELECT * FROM products WHERE name LIKE '%" + name + "%'";
 
 		try {
@@ -149,59 +153,57 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 			// preparedStatement.setString(1, '');
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				Product Products = new Product();
-				Products.setId(rs.getInt("id"));
-				Products.setName(rs.getString("name"));
-				Products.setCode(rs.getString("code"));
-				Products.setBrief(rs.getString("brief"));
-				Products.setImage(rs.getString("image"));
-				Products.setPrice(rs.getDouble("price"));
-				Productss.add(Products);
+				Product product = new Product();
+				product.setId(rs.getString("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setPrice(rs.getFloat("price"));
+//				product.setImage(rs.getString("image"));
+				product.setCategory_id(rs.getString("category_id"));
+				product.setSupplier_id(rs.getString("supplier_id"));
+				products.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Productss;
+		return products;
 	}
 
 	@Override
-	public void updateImage(Product Products) {
+	public void updateImage(Product product) {
 		String sql = "UPDATE products SET image = ? WHERE id = ?";
 
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, Products.getImage());
-			preparedStatement.setInt(2, Products.getId());
+//			preparedStatement.setBlob(1, product.getImage());
+//			preparedStatement.setString(2, product.getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
-	public List<Product> getProductByCategory(int id) {
+	public List<Product> getProductByCategory(String id) {
 		String sql = "SELECT * FROM products WHERE category_id = ?";
-		List<Product> Productss = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()){
-				Product Products = new Product();
-				Products.setId(rs.getInt("id"));
-				Products.setName(rs.getString("name"));
-				Products.setCode(rs.getString("code"));
-				Products.setPrice(rs.getDouble("price"));
-				Products.setImage(rs.getString("image"));
-				Products.setCategory_id(rs.getInt("category_id"));
+				Product product = new Product();
+				product.setId(rs.getString("id"));
+				product.setName(rs.getString("name"));
+				product.setCode(rs.getString("code"));
+				product.setPrice(rs.getDouble("price"));
+				product.setImage(rs.getString("image"));
+				product.setCategory_id(rs.getString("category_id"));
 				
-				Productss.add(Products);
+				products.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
