@@ -7,13 +7,9 @@ import model.Order;
 public interface OrderDao {
 	void addOrder(Order order);
 	
-	void editOrder(Order order);
+	void changeOrderStatus(Order order);
 	
-	void delteOrder(int id);
+	void deleteOrder(String id);
 	
-	List<Order> getAll();
-	
-	Order getByID(int id);
-	
-		
+	List<Order> getAll();	
 }

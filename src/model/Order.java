@@ -13,9 +13,11 @@ public class Order implements Serializable {
 	private float total_price;
 	private String customer_id;
 	private Date date;
-	
-	
-	
+
+	public Order() {
+		super();
+	}
+
 	public Order(String status, float total_price, String customer_id, Date date) {
 		super();
 		this.status = status;
@@ -54,8 +56,4 @@ public class Order implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
-	
 }
