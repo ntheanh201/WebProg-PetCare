@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dao.OrderDao;
-import dao.impl.OrderDaoImpl;
-import model.Order;
+import dao.OrderDetailDao;
+import dao.impl.OrderDetailDaoImpl;
+import model.OrderDetail;
 
 
 @WebServlet(urlPatterns = { "/order_details/*" })
@@ -26,20 +26,21 @@ public class OrderDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private Gson _gson = null;
-	private OrderDao OrderDao = new OrderDaoImpl();
+	private OrderDetailDao OrderDetailDao = new OrderDetailDaoImpl();
 
-	private HashMap<String, Order> _modelsDb = new HashMap<>();
+	private HashMap<String, OrderDetail> _modelsDb = new HashMap<>();
 
 	public OrderDetails() {
 		super();
 
 		_gson = new Gson();
 
-		List<Order> Orders = OrderDao.getAll();
-		for (Order s : Orders) {
-			String id = s.getId();
-			_modelsDb.put(id, s);
-		}
+		List<OrderDetail> orderDetails = OrderDetailDao.getAll();
+//		for (OrderDetail s : orderDetails) {
+////			String id = s.getId();
+//			String orderId = s.getOrder_id();
+//			_modelsDb.put(orderId, s);
+//		}
 	}
 
 	private void sendAsJson(HttpServletResponse response, Object obj) throws IOException {
@@ -59,7 +60,7 @@ public class OrderDetails extends HttpServlet {
 
 		if (pathInfo == null || pathInfo.equals("/")) {
 
-			Collection<Order> models = _modelsDb.values();
+			Collection<OrderDetail> models = _modelsDb.values();
 
 			sendAsJson(response, models);
 			return;
@@ -73,15 +74,24 @@ public class OrderDetails extends HttpServlet {
 			return;
 		}
 
-		String modelId = splits[1];
+		String orderId = splits[1];
 
-		if (!_modelsDb.containsKey(modelId)) {
+		if (!_modelsDb.containsKey(orderId)) {
 
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
 
-		sendAsJson(response, _modelsDb.get(modelId));
+//		sendAsJson(response, _modelsDb.get(orderId));
+		
+		List<OrderDetail> orderDetails = OrderDetailDao.getAllByOrder(orderId);
+		for (OrderDetail s : orderDetails) {
+			String id = s.getId();
+			_modelsDb.put(id, s);
+		}
+		Collection<OrderDetail> models = _modelsDb.values();
+
+		sendAsJson(response, models);
 		return;
 	}
 
@@ -100,11 +110,11 @@ public class OrderDetails extends HttpServlet {
 
 			String payload = buffer.toString();
 
-			Order model = _gson.fromJson(payload, Order.class);
+			OrderDetail model = _gson.fromJson(payload, OrderDetail.class);
 						
 			model.setId(UUID.randomUUID().toString());
 			
-			OrderDao.addOrder(model);
+			OrderDetailDao.addOrderDetail(model);
 			
 			_modelsDb.put(model.getId(), model);
 
@@ -150,11 +160,11 @@ public class OrderDetails extends HttpServlet {
 
 		String payload = buffer.toString();
 
-		Order model = _gson.fromJson(payload, Order.class);
+		OrderDetail model = _gson.fromJson(payload, OrderDetail.class);
 		
 		model.setId(modelId);
 		
-		OrderDao.changeOrderStatus(model);
+		OrderDetailDao.editOrderDetail(model);
 		_modelsDb.put(modelId, model);
 
 		sendAsJson(response, model);
@@ -187,9 +197,9 @@ public class OrderDetails extends HttpServlet {
 			return;
 		}
 
-		Order model = _modelsDb.get(modelId);
+		OrderDetail model = _modelsDb.get(modelId);
 
-		OrderDao.deleteOrder(modelId);
+		OrderDetailDao.deleteOrderDetail(modelId);
 		_modelsDb.remove(modelId);
 
 		sendAsJson(response, model);

@@ -12,7 +12,9 @@ public class OrderDetail implements Serializable {
 	private String order_id;
 	private int quantity;
 	
-	
+	public OrderDetail() {
+		super();
+	}
 	
 	public OrderDetail(String product_id, String order_id, int quantity) {
 		super();

@@ -32,7 +32,7 @@ public class OrderDaoImpl extends RootDao implements OrderDao {
 
 	@Override
 	public void changeOrderStatus(Order Order) {
-		String sql = "UPDATE Orders SET status = ? WHERE id = ?";
+		String sql = "UPDATE orders SET status = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
 			preparedStatement.setString(1, Order.getStatus());

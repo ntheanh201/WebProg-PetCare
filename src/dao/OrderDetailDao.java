@@ -5,15 +5,14 @@ import java.util.List;
 import model.OrderDetail;
 
 public interface OrderDetailDao {
-	void addOrderDetail(OrderDetail order);
+	void addOrderDetail(OrderDetail od);
 	
-	void editOrderDetil(OrderDetail order);
+	void editOrderDetail(OrderDetail od);
 	
-	void delteOrderDetail(int id);
+	void deleteOrderDetail(String id);
 	
 	List<OrderDetail> getAll();
 	
-	OrderDetail getByID(int id);
+	List<OrderDetail> getAllByOrder(String orderId);
 	
-		
 }
