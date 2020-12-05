@@ -12,10 +12,7 @@ import javax.servlet.http.Part;
 
 import dao.RootDao;
 import dao.ProductDao;
-import model.Category;
 import model.Product;
-import service.CategoriesService;
-import service.impl.CategoriesServiceImpl;
 
 public class ProductDaoImpl extends RootDao implements ProductDao {
 
@@ -162,6 +159,7 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 //				product.setImage(rs.getString("image"));
 				product.setCategory_id(rs.getString("category_id"));
 				product.setSupplier_id(rs.getString("supplier_id"));
+				
 				products.add(product);
 			}
 		} catch (SQLException e) {
@@ -196,10 +194,12 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 				Product product = new Product();
 				product.setId(rs.getString("id"));
 				product.setName(rs.getString("name"));
-				product.setCode(rs.getString("code"));
-				product.setPrice(rs.getDouble("price"));
-				product.setImage(rs.getString("image"));
+				product.setDescription(rs.getString("description"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setPrice(rs.getFloat("price"));
+//				product.setImage(rs.getString("image"));
 				product.setCategory_id(rs.getString("category_id"));
+				product.setSupplier_id(rs.getString("supplier_id"));
 				
 				products.add(product);
 			}
@@ -207,7 +207,7 @@ public class ProductDaoImpl extends RootDao implements ProductDao {
 			e.printStackTrace();
 		}
 		
-		return Productss;
+		return products;
 	}
 	
 	
