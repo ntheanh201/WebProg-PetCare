@@ -14,13 +14,14 @@ public class ShipperDaoImpl extends RootDao implements ShipperDao {
 
 	@Override
 	public void addShipper(Shipper shipper) {
-		String sql = "INSERT INTO shippers (id, name, username, password, email) VALUES (?,?,?,?) ";
+		String sql = "INSERT INTO shippers (id, name, username, password, email) VALUES (?,?,?,?,?) ";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, shipper.getName());
-			preparedStatement.setString(2, shipper.getUsername());
-			preparedStatement.setString(3, shipper.getPassword());
-			preparedStatement.setString(4, shipper.getEmail());
+			preparedStatement.setString(1, shipper.getId());
+			preparedStatement.setString(2, shipper.getName());
+			preparedStatement.setString(3, shipper.getUsername());
+			preparedStatement.setString(4, shipper.getPassword());
+			preparedStatement.setString(5, shipper.getEmail());
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

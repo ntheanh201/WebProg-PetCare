@@ -14,13 +14,14 @@ public class AdminDaoImpl extends RootDao implements AdminDao {
 
 	@Override
 	public void addAdmin(Admin admin) {
-		String sql = "INSERT INTO admins (id, name, username, password, email) VALUES (?,?,?,?) ";
+		String sql = "INSERT INTO admins (id, name, username, password, email) VALUES (?,?,?,?,?) ";
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
-			preparedStatement.setString(1, admin.getName());
-			preparedStatement.setString(2, admin.getUsername());
-			preparedStatement.setString(3, admin.getPassword());
-			preparedStatement.setString(4, admin.getEmail());
+			preparedStatement.setString(1, admin.getId());
+			preparedStatement.setString(2, admin.getName());
+			preparedStatement.setString(3, admin.getUsername());
+			preparedStatement.setString(4, admin.getPassword());
+			preparedStatement.setString(5, admin.getEmail());
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
