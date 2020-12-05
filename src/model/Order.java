@@ -12,6 +12,7 @@ public class Order implements Serializable {
 	private String status;
 	private float total_price;
 	private String customer_id;
+	private String shipper_id;
 	private Date date;
 
 	public Order() {
@@ -55,5 +56,13 @@ public class Order implements Serializable {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getShipper_id() {
+		return shipper_id;
+	}
+
+	public void setShipper_id(String shipper_id) {
+		this.shipper_id = shipper_id;
 	}
 }

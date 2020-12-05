@@ -14,7 +14,7 @@ public class OrderDaoImpl extends RootDao implements OrderDao {
 
 	@Override
 	public void addOrder(Order order){
-		String sql = "INSERT INTO orders (id, status, total_price, customer_id) VALUES (?,?,?,?) ";
+		String sql = "INSERT INTO orders (id, status, total_price, customer_id, shipper_id) VALUES (?,?,?,?,?) ";
 				
 		try {
 			PreparedStatement preparedStatement = getJDBCconnection().prepareStatement(sql);
@@ -22,6 +22,7 @@ public class OrderDaoImpl extends RootDao implements OrderDao {
 			preparedStatement.setString(2, order.getStatus());
 			preparedStatement.setFloat(3, order.getTotal_price());
 			preparedStatement.setString(4, order.getCustomer_id());
+			preparedStatement.setString(5, order.getShipper_id());
 			
 			preparedStatement.executeUpdate();
 			
@@ -72,6 +73,7 @@ public class OrderDaoImpl extends RootDao implements OrderDao {
 				order.setStatus(rs.getString("status"));
 				order.setTotal_price(rs.getFloat("total_price"));
 				order.setCustomer_id(rs.getString("customer_id"));
+				order.setShipper_id(rs.getString("shipper_id"));
 				order.setDate(rs.getDate("date"));
 				
 				orders.add(order);
