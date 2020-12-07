@@ -20,7 +20,7 @@ import dao.impl.CustomerDaoImpl;
 import dao.impl.ShipperDaoImpl;
 import model.Admin;
 import model.Customer;
-import model.LoginModel;
+import model.LoginRequest;
 import model.Shipper;
 import util.Hasher;
 
@@ -76,7 +76,7 @@ public class Login extends HttpServlet {
 
 			String payload = buffer.toString();
 
-			LoginModel model = _gson.fromJson(payload, LoginModel.class);
+			LoginRequest model = _gson.fromJson(payload, LoginRequest.class);
 			if (model != null && checkLogin(model.getUsername(), model.getPassword())) {
 				sendAsJson(response, "success");
 			} else {

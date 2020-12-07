@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class LoginModel implements Serializable {
+public class LoginRequest implements Serializable {
 	/**
 	 * 
 	 */

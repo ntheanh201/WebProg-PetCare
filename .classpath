@@ -24,6 +24,7 @@
 	<classpathentry kind="lib" path="/Users/macbook/Downloads/TheAnh/Documents/workspace/PetCare-Admin/WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.3.jar"/>
 	<classpathentry kind="lib" path="/Users/macbook/Downloads/TheAnh/Documents/workspace/PetCare-Admin/WebContent/WEB-INF/lib/taglibs-standard-jstlel-1.2.3.jar"/>
 	<classpathentry kind="lib" path="/Users/macbook/Downloads/TheAnh/Documents/workspace/PetCare-Admin/WebContent/WEB-INF/lib/taglibs-standard-spec-1.2.3.jar"/>
-	<classpathentry kind="lib" path="/Users/macbook/Downloads/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/Users/macbook/Downloads/JavaLibs/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/Users/macbook/Downloads/JavaLibs/jjwt-0.6.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
